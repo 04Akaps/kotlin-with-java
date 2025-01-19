@@ -1,0 +1,7 @@
+server:
+  port: 7002
+
+spring:
+  data:
+    mongo:
+      uri: "mongodb+srv://sdl182975:root@spring-kotlin.eztal.mongodb.net/?retryWrites=true&w=majority&appName=spring-kotlin"
