@@ -1,7 +1,8 @@
 package org.example.controller
 
 import model.entity.User
-import org.example.custom.requeest.annotation.PageCustomAnnotation
+import org.example.annotation.OrderCustomAnnotation
+import org.example.annotation.PageCustomAnnotation
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.example.service.UserService;
@@ -40,7 +41,7 @@ class UserController(private val userService: UserService) {
     }
 
     @GetMapping("/page-custom-annotations")
-    fun pagingAnnotation(@PageCustomAnnotation(defaultValue = "ASC") order: String) {
+    fun pagingAnnotation(@OrderCustomAnnotation(defaultSort = "ASC") order: String) {
         println("Order: $order")
     }
 }
