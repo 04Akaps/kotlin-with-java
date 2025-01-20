@@ -44,13 +44,6 @@ class LoggingAspect {
         val method = methodSignature.method
         log.info("method = {}", method.name)
 
-        val args = joinPoint.args
-        for (arg in args) {
-            if (arg != null) {
-                log.info("type = {}", arg.javaClass.simpleName)
-                log.info("value = {}", arg)
-            }
-        }
     }
 
     @After("controller() || service()")
@@ -59,12 +52,5 @@ class LoggingAspect {
         val method = methodSignature.method
         log.info("method = {}", method.name)
 
-        val args = joinPoint.args
-        for (arg in args) {
-            if (arg != null) {
-                log.info("type = {}", arg.javaClass.simpleName)
-                log.info("value = {}", arg)
-            }
-        }
     }
 }

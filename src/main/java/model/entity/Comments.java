@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
-@Document(collation = "comments")
+@Document(collection = "comments")
 @Getter
 public class Comments {
     @Id

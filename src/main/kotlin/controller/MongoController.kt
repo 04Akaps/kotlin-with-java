@@ -23,7 +23,6 @@ class MongoController(
         return mongoService.findLatestMovies(page, size);
     }
 
-
     @GetMapping("/movie/{movieTitle}")
     fun getMovieByTitle(@PathVariable movieTitle: String): Response<Movies>? {
         return mongoService.findMovieByTitle(movieTitle)

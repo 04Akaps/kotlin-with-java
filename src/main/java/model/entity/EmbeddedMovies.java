@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.Date;
 import java.util.List;
 
-@Document(collation = "embedded_movies")
+@Document(collection = "embedded_movies")
 @Getter
 public class EmbeddedMovies {
     @Id

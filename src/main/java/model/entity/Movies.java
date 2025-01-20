@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 
-@Document(collation = "movies")
+@Document(collection = "movies")
 @Getter
 public class Movies {
     @Id
