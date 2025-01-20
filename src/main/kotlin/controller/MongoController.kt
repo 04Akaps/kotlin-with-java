@@ -24,7 +24,7 @@ class MongoController(
     }
 
     @GetMapping("/movie/{movieTitle}")
-    fun getMovieByTitle(@PathVariable movieTitle: String): Response<Movies>? {
+    fun getMovieByTitle(@PathVariable @NotNull movieTitle: String): Response<Movies>? {
         return mongoService.findMovieByTitle(movieTitle)
     }
 
