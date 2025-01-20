@@ -1,6 +1,7 @@
 package org.example.controller
 
 import model.entity.Movies
+import model.entity.MoviesWithComments
 import model.response.Response
 import org.example.annotation.OrderCustomAnnotation
 import org.example.annotation.PageCustomAnnotation
@@ -41,6 +42,12 @@ class MongoController(
             page, size,
             order
         )
+    }
+
+
+    @GetMapping("/movie-with-comments/{movieTitle}")
+    fun findMoviesWithComments(@PathVariable @NotNull movieTitle: String): Response<MoviesWithComments> {
+        return mongoService.findMoviesWithComments(movieTitle)
     }
 
 }

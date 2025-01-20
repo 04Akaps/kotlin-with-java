@@ -1,26 +1,26 @@
 package org.example.service
 
-import com.mongodb.ConnectionString
-import com.mongodb.MongoClientSettings
-import com.mongodb.ReadPreference
-import com.mongodb.client.MongoClients
+
 import exception.CustomException
 import exception.ErrorCode
 import lombok.RequiredArgsConstructor
+import model.entity.Comments
 import model.entity.Movies
+import model.entity.MoviesWithComments
 import model.enums.MongoTableCollector
 import model.response.Response
-import org.bson.UuidRepresentation
-import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Pageable
+
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoTemplate
-import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
+import org.springframework.data.mongodb.core.aggregation.Aggregation
 import org.springframework.stereotype.Service
 import repository.Mongo.utils.MongoMethod
-import java.util.Arrays
+import org.bson.Document
+import org.springframework.data.mongodb.core.aggregate
+import org.springframework.data.mongodb.core.aggregation.Aggregation.*
+
 
 
 @Service
@@ -75,6 +75,25 @@ class MongoService(
         val query = MongoMethod.createQuery(pageable, filter, sort)
 
         val results: List<Movies> = template.find(query, Movies::class.java)
+
+        return Response.success(results)
+    }
+
+
+    fun findMoviesWithComments(
+        title: String,
+    ): Response<MoviesWithComments> {
+        val template = template[MongoTableCollector.SampleMflix]
+            ?: throw CustomException(ErrorCode.FailedToFindTemplate)
+
+        val pipeline = listOf(
+            match(Criteria.where("title").`is`(title)),
+            lookup("comments", "_id", "movie_id", "comments"),
+            project("title", "comments")
+                .and("_id").`as`("id")
+        )
+
+        val results = template.aggregate(newAggregation(pipeline), "movies", MoviesWithComments::class.java).uniqueMappedResult
 
         return Response.success(results)
     }

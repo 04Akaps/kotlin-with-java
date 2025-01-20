@@ -12,9 +12,6 @@ import java.util.Date;
 @Getter
 public class Comments {
     @Id
-    private ObjectId _id;
-
-    @Id
     private ObjectId id;
 
     @Field("date")
