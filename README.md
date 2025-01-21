@@ -75,7 +75,7 @@ type: String
 _id: ObjectId
 jwt: String
 user_id: String
-```s
+```
 
 
 <h3>`theaters`</h3>
