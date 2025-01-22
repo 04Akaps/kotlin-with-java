@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration
 import java.util.*
 
 @Configuration
-class CircuitBreakerConfig {
+class CircuitConfig {
 
     @Bean
     fun circuitBreakerRegistry(): CircuitBreakerRegistry {

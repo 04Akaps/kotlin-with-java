@@ -4,7 +4,6 @@ package org.example.service
 import exception.CustomException
 import exception.ErrorCode
 import lombok.RequiredArgsConstructor
-import model.entity.Comments
 import model.entity.Movies
 import model.entity.MoviesWithComments
 import model.enums.MongoTableCollector
@@ -14,11 +13,8 @@ import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
-import org.springframework.data.mongodb.core.aggregation.Aggregation
 import org.springframework.stereotype.Service
 import repository.Mongo.utils.MongoMethod
-import org.bson.Document
-import org.springframework.data.mongodb.core.aggregate
 import org.springframework.data.mongodb.core.aggregation.Aggregation.*
 
 

@@ -14,6 +14,10 @@ repositories {
 
 dependencies {
 
+    implementation("com.fasterxml.jackson.module:jackson-module-afterburner")
+
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+
     implementation("io.github.resilience4j:resilience4j-spring-boot3:2.1.0")
 
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
