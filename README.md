@@ -71,6 +71,7 @@ type: String
 ```
 
 <h3>`sessions`</h3>
+
 ```
 _id: ObjectId
 jwt: String
@@ -79,6 +80,7 @@ user_id: String
 
 
 <h3>`theaters`</h3>
+
 ```
 _id: ObjectId
 location: Object
@@ -86,6 +88,7 @@ theaterId: Int32
 ```
 
 <h3>`users`</h3>
+
 ```
 _id: ObjectId
 email: String

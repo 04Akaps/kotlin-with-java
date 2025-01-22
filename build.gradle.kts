@@ -14,6 +14,8 @@ repositories {
 
 dependencies {
 
+    implementation("io.github.resilience4j:resilience4j-spring-boot3:2.1.0")
+
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
     compileOnly ("org.projectlombok:lombok")

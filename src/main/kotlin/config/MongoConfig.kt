@@ -23,12 +23,12 @@ class MongoConfig {
 
     @Bean
     fun template(): Map<MongoTableCollector, MongoTemplate> {
-        val hashMap: MutableMap<MongoTableCollector, MongoTemplate> = HashMap()
+        val mapper = EnumMap<MongoTableCollector, MongoTemplate>(MongoTableCollector::class.java)
         val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)
             .build()
 
-        Arrays.stream(MongoTableCollector.entries.toTypedArray()).forEach { c: MongoTableCollector ->
+        for (c in MongoTableCollector.entries){
             val settings = MongoClientSettings.builder()
                 .uuidRepresentation(UuidRepresentation.STANDARD) // BSON 변화 표준 -> 기본을 따른다.
                 .applyConnectionString(ConnectionString(uri)) // 접속 uri
@@ -37,7 +37,7 @@ class MongoConfig {
                 .build()
             try {
                 val mongoClient = MongoClients.create(settings)
-                hashMap[c] = MongoTemplate(
+                mapper[c] = MongoTemplate(
                     SimpleMongoClientDatabaseFactory(mongoClient, c.dataBaseName)
                 )
             } catch (e: Exception) {
@@ -45,7 +45,8 @@ class MongoConfig {
             }
         }
 
-        return hashMap
+        return mapper
     }
+
 
 }
