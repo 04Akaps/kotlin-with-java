@@ -13,12 +13,16 @@ repositories {
 }
 
 dependencies {
+    // ktor
     implementation("io.ktor:ktor-client-core:2.2.3") // 최신 2.x 버전
     implementation("io.ktor:ktor-client-cio:2.2.3")
 
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3") // 코루틴을 사용하는데에 있엉서 Jsckon은 동기적으로 반환하기 떄문에 flux에 대해서는 다른 형태로 적용
+    // serializer
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+
+    // 코루틴
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.3")
 
     implementation("com.fasterxml.jackson.module:jackson-module-afterburner")
 

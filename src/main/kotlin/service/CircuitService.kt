@@ -6,12 +6,7 @@ import io.github.resilience4j.circuitbreaker.CircuitBreaker
 import io.ktor.client.*
 import lombok.RequiredArgsConstructor
 import model.enums.CircuitCollector
-import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
-import org.springframework.web.reactive.function.client.WebClient
-import reactor.core.publisher.Mono
-import reactor.util.function.Tuple3
-import reactor.util.function.Tuples
 import kotlinx.coroutines.coroutineScope
 
 @Service
@@ -22,6 +17,47 @@ class CircuitService(
 ) {
 
     suspend fun testRoutine() : String = coroutineScope {
+//        val map = async {
+//            kakaoMapAdapter.getMapData(partnerKey)
+//        }
+//
+//
+//        val payment = async {
+//            offlinePaymentAdapter.getPartner(partnerKey)
+//        }
+//
+//        val benefits = async {
+//            benefitAdapter.getBenefits(partnerKey)
+//        }
+//
+//        // 2단계
+//        // map의 API 응답값을 사용하므로, map.await()으로 응답을 받고 나서 async가 실행됨
+//        val bizPartner = async {
+//            bizPartnerAdapter.getPartnerHub(map.await().partnerCode)
+//        }
+//
+//        // 3단계 - paymentInfo, bizPartner API 2개에 종속적
+//        // 2개 API가 모두 응답을 받고 나면 async 내부의 로직이 실행됨
+//        val membership = async {
+//            membershipAdapter.getUserMembership(
+//                userAccountId,
+//                companyId = payment.await().companyId,
+//                partnerId = bizPartner.await().getMembershipPartnerId(),
+//            )
+//        }
+//
+//        PartnerHub.Response(
+//            placeName = map.await().placeName,
+//            bizHours = map.await().bizHour?.toDisplay(),
+//            paymentMethods = payment.await().paymentMethod.toList(),
+//            keywords = bizPartner.await().keywords,
+//            benefits = BizEventThenBenefits.of(bizPartner.await(), benefits.await()).toList(),
+//            notice = bizPartner.await().notice,
+//            membership = MembershipArea.of(membership.await()),
+//            buttonArea = ButtonArea.of(payment.await(), membership.await())
+//        )
+
+
         ""
     }
 
