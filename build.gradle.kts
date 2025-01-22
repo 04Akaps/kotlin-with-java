@@ -13,6 +13,10 @@ repositories {
 }
 
 dependencies {
+    implementation("io.ktor:ktor-client-core:2.2.0")  // 최신 버전 확인
+    implementation("io.ktor:ktor-client-cio:2.2.0")
+    implementation("io.ktor:ktor-client-serialization:2.2.0")  // JSON 직렬화/역직렬화
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3") // 코루틴을 사용하는데에 있엉서 Jsckon은 동기적으로 반환하기 떄문에 flux에 대해서는 다른 형태로 적용
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")

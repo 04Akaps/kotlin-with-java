@@ -34,7 +34,7 @@ class CircuitController(private val circuitService: CircuitService) {
     }
 
     @GetMapping("/do-test")
-    fun test() {
-        circuitService.callApiUsingCircuit()
+    suspend fun test() {
+        circuitService.testRoutine()
     }
 }

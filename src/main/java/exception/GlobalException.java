@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.*;
 
 @ControllerAdvice
-@RestController
 public class GlobalException {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class) // 타입에러

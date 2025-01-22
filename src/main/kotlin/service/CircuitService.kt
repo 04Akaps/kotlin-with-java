@@ -16,63 +16,10 @@ import kotlinx.coroutines.coroutineScope
 @Service
 @RequiredArgsConstructor
 class CircuitService(
-    private val webClient: WebClient,
     private val circuitTemplate: Map<CircuitCollector, CircuitBreaker>
 ) {
 
-    fun callApiUsingCircuit() {
-        val urlX = "http://localhost:7002/api/circuit/one"
-        val urlY = "http://localhost:7002/api/circuit/two"
-        val urlZ = "http://localhost:7002/api/circuit/three"
-
-        val xResponse: Mono<String> = breaker(CircuitCollector.API_1).executeCallable {
-            webClient.get().uri(urlX)
-                .retrieve()
-                .onStatus({ status -> status.isError }) { response ->
-                    Mono.error(CustomException(ErrorCode.FailedToCreateMongoTemplate))
-                }
-                .bodyToMono(String::class.java)
-                .onErrorResume { Mono.just("Error in X") }
-        }
-
-        val yResponse: Mono<String> = breaker(CircuitCollector.API_2).executeCallable {
-            webClient.get().uri(urlY)
-                .retrieve()
-                .onStatus({ status -> status.isError }) { response ->
-                    Mono.error(CustomException(ErrorCode.FailedToCreateMongoTemplate))
-                }
-                .bodyToMono(String::class.java)
-                .onErrorResume { Mono.just("Error in Y") }
-        }
-
-        val zResponse: Mono<String> = breaker(CircuitCollector.API_3).executeCallable {
-            webClient.get().uri(urlZ)
-                .retrieve()
-                .onStatus({ status -> status.isError }) { response ->
-                    Mono.error(CustomException(ErrorCode.FailedToCreateMongoTemplate))
-                }
-                .bodyToMono(String::class.java)
-                .onErrorResume { Mono.just("Error in Z") }
-        }
-
-        Mono.zip(xResponse, yResponse, zResponse)
-            .map { tuple: Tuple3<String, String, String> ->
-
-                val x = tuple.t1
-                val y = tuple.t2
-                val z = tuple.t3
-
-                println("Result from X: $x, Result from Y: $y, Result from Z: $z")
-
-                "결과: $x, $y, $z"
-            }
-            .subscribe { result ->
-                println("최종 결과: $result")
-            }
-    }
-
     suspend fun testRoutine() : String = coroutineScope {
-
         ""
     }
 
