@@ -20,9 +20,9 @@ class CircuitConfig {
 
         val circuitBreakerMap = EnumMap<CircuitCollector, CircuitBreaker>(CircuitCollector::class.java)
 
-        for (key in CircuitCollector.entries) {
-            val circuitBreaker = circuitBreakerRegistry.circuitBreaker(key.getKey(), key.toConfig())
-            circuitBreakerMap[key] = circuitBreaker
+        for (c in CircuitCollector.entries) {
+            val circuitBreaker = circuitBreakerRegistry.circuitBreaker(c.key, c.toConfig())
+            circuitBreakerMap[c] = circuitBreaker
         }
 
         return circuitBreakerMap

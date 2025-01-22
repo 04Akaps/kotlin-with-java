@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 import reactor.util.function.Tuple3
 import reactor.util.function.Tuples
-
+import kotlinx.coroutines.coroutineScope
 
 @Service
 @RequiredArgsConstructor
@@ -69,7 +69,11 @@ class CircuitService(
             .subscribe { result ->
                 println("최종 결과: $result")
             }
+    }
 
+    suspend fun testRoutine() : String = coroutineScope {
+
+        ""
     }
 
 

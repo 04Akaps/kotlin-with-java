@@ -14,7 +14,7 @@ public enum CircuitCollector {
     API_3("API:3", 40.0f, Duration.ofSeconds(10), 20);
 
 
-    private final String key;
+    public final String key;
     private final float failureRateThreshold;
     private final Duration waitDurationInOpenState;
     private final int slidingWindowSize;
@@ -27,4 +27,6 @@ public enum CircuitCollector {
                 .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED) // 횟수 기반으로 카운트를 집계
                 .build();
     }
+
+
 }
