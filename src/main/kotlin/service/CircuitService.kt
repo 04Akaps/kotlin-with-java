@@ -3,6 +3,7 @@ package org.example.service
 import exception.CustomException
 import exception.ErrorCode
 import io.github.resilience4j.circuitbreaker.CircuitBreaker
+import io.ktor.client.*
 import lombok.RequiredArgsConstructor
 import model.enums.CircuitCollector
 import org.springframework.http.HttpStatus
@@ -16,7 +17,8 @@ import kotlinx.coroutines.coroutineScope
 @Service
 @RequiredArgsConstructor
 class CircuitService(
-    private val circuitTemplate: Map<CircuitCollector, CircuitBreaker>
+    private val circuitTemplate: Map<CircuitCollector, CircuitBreaker>,
+    private  val httpClient: HttpClient
 ) {
 
     suspend fun testRoutine() : String = coroutineScope {
