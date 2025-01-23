@@ -9,9 +9,17 @@ import org.springframework.http.converter.json.*
 import org.springframework.web.reactive.config.WebFluxConfigurer
 
 @Configuration
-class WebFluxConfig(private val kJson: Json) : WebFluxConfigurer {
+class WebFluxConfig : WebFluxConfigurer {
+
+    private val kJson: Json = Json {
+        ignoreUnknownKeys = true
+        prettyPrint = true
+        isLenient = true
+    }
 
     override fun configureHttpMessageCodecs(configurer: ServerCodecConfigurer) {
+
+
         configurer.defaultCodecs().configureDefaultCodec { KotlinSerializationJsonHttpMessageConverter(kJson) }
         configurer.defaultCodecs().kotlinSerializationJsonEncoder(KotlinSerializationJsonEncoder(kJson))
         configurer.defaultCodecs().kotlinSerializationJsonDecoder(KotlinSerializationJsonDecoder(kJson))
